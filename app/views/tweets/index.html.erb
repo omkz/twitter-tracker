@@ -5,6 +5,9 @@
     <button type="submit" class="btn" ng-click="search()">Search</button>
     <p class="help-block">Try for example: "coffee"</p>
   </form>
+  <ul>
+    <li ng-repeat="tweet in results">
+      {{tweet.status}} -- retweet: {{tweet.retweet}} -- favourites:{{tweet.favorite}}
+    </li>
+  </ul>
 </div>
-
-

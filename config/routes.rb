@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'tweets/fetch_tweets'
 
+  match '/search/:q', to: 'tweets#search', via: :get
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

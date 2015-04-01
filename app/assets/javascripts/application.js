@@ -13,5 +13,4 @@
 //= require angular
 //= require angular-resource
 //= require main.js
-//= require bootstrap-sprockets
 //= require_tree .

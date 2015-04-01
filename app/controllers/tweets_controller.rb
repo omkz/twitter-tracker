@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  # before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+
   def index
   end
 
@@ -8,4 +10,10 @@ class TweetsController < ApplicationController
       Tweet.create(:status => "@#{tweet.user.screen_name}: #{tweet.text}", :favorite => tweet.favorite_count, :retweet => tweet.retweet_count)
     end
   end
+
+  def search
+    @tweets = Tweet.search(params[:q]).order("created_at DESC")
+    render json: @tweets
+  end
+
 end
