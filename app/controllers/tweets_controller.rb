@@ -1,8 +1,5 @@
 class TweetsController < ApplicationController
   def index
-    Rufus::Scheduler.singleton.in '5s' do
-      Rails.logger.info "time flies, it's now #{Time.now}"
-    end
   end
 
   def fetch_tweets
