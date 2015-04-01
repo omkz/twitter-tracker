@@ -55,5 +55,6 @@ gem 'puma'
 
 gem 'rufus-scheduler'
 
-
 gem 'bootstrap-sass', '~> 3.3.4'
+
+gem 'angularjs-rails'
