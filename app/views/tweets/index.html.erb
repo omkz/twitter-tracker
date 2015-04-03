@@ -1,12 +1,23 @@
 <div ng-controller="TweetsController">
-  <form class="well form-search">
-    <label>Search:</label>
-    <input type="text" ng-model="keywords" class="input-medium search-query" placeholder="Keywords...">
+  <form class="well form-search form-inline">
+    <div class="form-group">
+      <label>Search:</label>
+      <input type="text" ng-model="keywords" class="input-medium search-query" placeholder="Keywords...">
+    </div>
     <button type="submit" class="btn" ng-click="search()">Search</button>
+    <div class="form-group">
+      <label>Sort by : </label>
+      <select class="form-control" ng-model="sortBy">
+        <option value="" selected="selected" >-- Select --</option>
+        <option value="-retweet">retweet</option>
+        <option value="-favorite">favorite</option>
+      </select>
+    </div>
     <p class="help-block">Try for example: "coffee"</p>
   </form>
+
   <ul>
-    <li ng-repeat="tweet in results">
+    <li ng-repeat="tweet in results | orderBy:sortBy ">
       {{tweet.status}} -- retweet: {{tweet.retweet}} -- favourites:{{tweet.favorite}}
     </li>
   </ul>
