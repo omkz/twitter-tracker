@@ -12,5 +12,6 @@
 //
 //= require angular
 //= require angular-resource
+//= require ng-google-chart
 //= require main.js
 //= require_tree .

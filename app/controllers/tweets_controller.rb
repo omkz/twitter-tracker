@@ -13,6 +13,21 @@ class TweetsController < ApplicationController
 
   def search
     @tweets = Tweet.search(params[:q]).order("created_at DESC")
+
+    # @tweets.each { |tweet| tweet.scan(/@([a-z0-9_]+)/i).first }
+    #
+    @usernames = Array.new
+
+    @tweets.each do |tweet|
+      p username = tweet.status.scan(/@([a-z0-9_]+)/i).first
+      @usernames << username
+    end
+
+    counts = Hash.new(0)
+    @usernames.each { |name| counts[name] += 1 }
+
+    p counts
+
     render json: @tweets
   end
 
