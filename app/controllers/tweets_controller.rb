@@ -11,24 +11,34 @@ class TweetsController < ApplicationController
     end
   end
 
+
   def search
     @tweets = Tweet.search(params[:q]).order("created_at DESC")
 
-    # @tweets.each { |tweet| tweet.scan(/@([a-z0-9_]+)/i).first }
-    #
+
+    @counts = count_username_mentions(@tweets)
+
+    render json: {:tweets => @tweets, :counts => @counts}
+
+  end
+
+  def count_username_mentions(tweets)
+
     @usernames = Array.new
 
-    @tweets.each do |tweet|
-      p username = tweet.status.scan(/@([a-z0-9_]+)/i).first
+    tweets.each do |tweet|
+
+      #get username from all of tweets searched using regexp
+      username = tweet.status.match(/@([a-z0-9_]+)/i).to_s
+
       @usernames << username
     end
 
-    counts = Hash.new(0)
-    @usernames.each { |name| counts[name] += 1 }
+    # count array elements
+    @usernames.group_by{|i| i}.map{|k,v| [k, v.count] }
 
-    p counts
-
-    render json: @tweets
   end
 
 end
+
+
